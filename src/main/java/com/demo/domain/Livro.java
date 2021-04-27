@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Livro implements Serializable{
 	
@@ -22,6 +24,7 @@ public class Livro implements Serializable{
 	private String nome_autor;
 	private String texto;
 	
+	@JsonIgnore // proteção contra serialização, o que evita loops infinitos
 	@ManyToOne
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria;
